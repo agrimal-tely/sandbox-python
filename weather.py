@@ -20,7 +20,7 @@ def get_weather(city_name):
     lat, lon, city = get_coordinates(city_name)
     if not lat or not lon or not city:
         print(f"❌ City not found: {city_name}")
-        return
+        return None, None
 
     # 2. The Endpoint (The URL we 'call')
     url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true"
@@ -40,8 +40,12 @@ def get_weather(city_name):
         print(f"🌡️  Current temperature in {city}: {temp}°C")
         print(f"💨 Wind speed: {wind} km/h")
 
+        return temp, wind
+
     except Exception as e:
         print(f"❌ Error fetching data: {e}")
+
+        return None, None
 
 if __name__ == "__main__":
     city = input("Enter a city to check: ")
