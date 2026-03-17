@@ -10,8 +10,9 @@ COPY requirements.txt .
 # 4. Install the libraries (like 'requests') inside the box
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 5. Copy your weather.py script into the box
+# 5. Copy your app.py script into the box
+COPY app.py .
 COPY weather.py .
 
-# 6. Tell the box what command to run when it starts
-CMD ["python", "weather.py"]
+# 6. Tell the box to run the Streamlit server on a specific port
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
