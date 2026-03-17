@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 5. Copy your app.py script into the box
 COPY app.py .
 COPY weather.py .
+COPY analytics.py .
 
 # 6. Tell the box to run the Streamlit server on a specific port
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
